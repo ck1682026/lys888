@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>城市智脑 · 项目可视化指南</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'PingFang SC','Microsoft YaHei',sans-serif;background:#1a1a2e;min-height:100vh;padding:40px 20px;color:#fff}
+.container{max-width:1200px;margin:0 auto}
+h1{text-align:center;font-size:28px;font-weight:600;margin-bottom:8px;letter-spacing:2px}
+.sub{text-align:center;color:#888;font-size:14px;margin-bottom:40px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(500px,1fr));gap:24px;margin-bottom:32px}
+.card{background:#16213e;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+.card-hd{background:linear-gradient(135deg,#0f3460,#533483);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.card-hd .dot{width:12px;height:12px;border-radius:50%}
+.d1{background:#ff5f56}.d2{background:#ffbd2e}.d3{background:#27c93f}
+.card-hd span{font-size:13px;font-weight:500;opacity:0.9}
+.chrome-bar{display:flex;align-items:center;gap:6px;padding:10px 16px;background:#0d1b2a;border-bottom:1px solid rgba(255,255,255,0.04)}
+.chrome-bar input{background:#1a2a3a;border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:5px 12px;font-size:12px;color:#ccc;width:100%}
+.win-body{padding:20px;background:#f5f4f0;min-height:380px}
+.title-block{text-align:center;margin-bottom:20px}
+.title-block h2{font-size:20px;color:#1a1a1a;font-weight:600;letter-spacing:1px}
+.title-block p{color:#666;font-size:12px;margin-top:4px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.mc{background:#fff;border-radius:8px;padding:12px;text-align:center;border:0.5px solid rgba(0,0,0,0.06)}
+.mc .v{font-size:22px;font-weight:600;color:#1a1a1a}
+.mc .l{font-size:11px;color:#888;margin-top:2px}
+.mc .d{font-size:11px;color:#0a8a5e;font-weight:500;margin-top:2px}
+.agent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.ac{background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,0.07);padding:10px}
+.ai{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.inf{flex:1}
+.an{font-size:11px;font-weight:500;color:#1a1a1a}
+.as{font-size:10px;margin-top:1px}
+.as.r{color:#534ab7}.as.g{color:#0a8a5e}.as.gy{color:#888}
+.bar{background:#f0f0ee;border-radius:3px;height:3px;margin-top:5px}
+.br{border-radius:3px;height:3px}
+.at{font-size:10px;color:#888;line-height:1.5}
+.feed{display:flex;flex-direction:column;gap:7px}
+.fi{display:flex;gap:8px;align-items:flex-start;background:#fff;border-radius:9px;border:0.5px solid rgba(0,0,0,0.06);padding:9px 11px}
+.fi-ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.fi-con{flex:1}
+.fi-t{font-size:11px;font-weight:500;color:#1a1a1a}
+.fi-m{font-size:10px;color:#888;margin-top:2px}
+.tags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.tag{font-size:10px;padding:2px 7px;border-radius:10px}
+.tp{background:#eef0ff;color:#534ab7}
+.tt{background:#e1f5ee;color:#0a8a5e}
+.ta{background:#faeed9;color:#854f0b}
+.tc{background:#faece7;color:#993c1d}
+.tb{background:#e6f1fb;color:#185fa5}
+.score{margin-left:auto;font-size:12px;font-weight:600;color:#534ab7;flex-shrink:0}
+.section{text-align:center;margin:32px 0 16px}
+.section h3{font-size:16px;font-weight:600;color:#fff;margin-bottom:6px}
+.section p{font-size:13px;color:#888}
+.flow{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;margin:24px 0}
+.node{background:#16213e;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px 20px;text-align:center;min-width:120px}
+.node .n-ico{font-size:28px;margin-bottom:6px}
+.node .n-t{font-size:13px;font-weight:500;color:#fff}
+.node .n-s{font-size:11px;color:#888;margin-top:3px}
+.arr{color:#534ab7;font-size:20px;font-weight:300}
+.footer{text-align:center;padding:24px;color:#555;font-size:12px}
+.footer a{color:#534ab7;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>🏙️ 城市智脑 · 可视化项目指南</h1>
+  <p class="sub">基于多智能体架构的本地生活与文旅智能中枢 · github.com/ck1682026/lys888</p>
+
+  <!-- 截图1：主界面 -->
+  <div class="row">
+    <div class="card">
+      <div class="card-hd">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span>主界面 · 多智能体协作看板</span>
+      </div>
+      <div class="win-body">
+        <div style="display:grid;grid-template-columns:160px 1fr 220px;gap:12px">
+          <!-- sidebar -->
+          <div>
+            <div style="background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,0.07);padding:12px 0;margin-bottom:8px">
+              <div style="font-size:10px;color:#aaa;font-weight:500;padding:0 10px;margin-bottom:6px;letter-spacing:.04em">智能体</div>
+              <div style="padding:6px 10px;background:#eeedfe;color:#534ab7;border-radius:7px;font-size:11px;font-weight:500;margin-bottom:3px">● 总调度中枢 <span style="background:#ddd9fc;color:#534ab7;padding:1px 5px;border-radius:10px;font-size:10px;float:right">6</span></div>
+              <div style="padding:6px 10px;font-size:11px;color:#555;border-radius:7px;margin-bottom:3px">● 美食发现 <span style="background:#f0f0ee;padding:1px 5px;border-radius:10px;font-size:10px;float:right;color:#888">128</span></div>
+              <div style="padding:6px 10px;font-size:11px;color:#555;border-radius:7px;margin-bottom:3px">● 景点规划 <span style="background:#f0f0ee;padding:1px 5px;border-radius:10px;font-size:10px;float:right;color:#888">54</span></div>
+              <div style="padding:6px 10px;font-size:11px;color:#555;border-radius:7px;margin-bottom:3px">● 交通导航 <span style="background:#f0f0ee;padding:1px 5px;border-radius:10px;font-size:10px;float:right;color:#888">实时</span></div>
+              <div style="padding:6px 10px;font-size:11px;color:#555;border-radius:7px;margin-bottom:3px">● 活动推荐 <span style="background:#f0f0ee;padding:1px 5px;border-radius:10px;font-size:10px;float:right;color:#888">23</span></div>
+              <div style="padding:6px 10px;font-size:11px;color:#555;border-radius:7px">● 住宿助手 <span style="background:#f0f0ee;padding:1px 5px;border-radius:10px;font-size:10px;float:right;color:#888">40</span></div>
+            </div>
+            <div style="background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,0.07);padding:12px 0">
+              <div style="font-size:10px;color:#aaa;font-weight:500;padding:0 10px;margin-bottom:6px;letter-spacing:.04em">数据源</div>
+              <div style="padding:5px 10px;font-size:11px;color:#555">● 大众点评</div>
+              <div style="padding:5px 10px;font-size:11px;color:#555">● 高德地图</div>
+              <div style="padding:5px 10px;font-size:11px;color:#555">● 携程旅行</div>
+              <div style="padding:5px 10px;font-size:11px;color:#555">● 小红书</div>
+              <div style="padding:5px 10px;font-size:11px;color:#555">● 本地政务</div>
+            </div>
+          </div>
+          <!-- main -->
+          <div>
+            <div style="background:#fff;border-radius:12px;border:0.5px solid rgba(0,0,0,0.07);padding:14px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:2px">多智能体协作看板</div>
+              <div style="font-size:11px;color:#888;margin-bottom:10px">智能体实时协同 · 整合碎片化本地信息 · 个性化推荐</div>
+              <div class="metrics">
+                <div class="mc"><div class="v">12,847</div><div class="l">今日处理量</div><div class="d">↑ 18%</div></div>
+                <div class="mc"><div class="v">96.2%</div><div class="l">推荐满意度</div><div class="d">↑ 2.1%</div></div>
+                <div class="mc"><div class="v">1,204</div><div class="l">活跃用户</div><div class="d">↑ 34</div></div>
+                <div class="mc"><div class="v">0.8s</div><div class="l">响应时间</div><div class="d">↓ 0.2s</div></div>
+              </div>
+              <div style="font-size:11px;font-weight:500;color:#555;margin-bottom:8px">六大智能体状态</div>
+              <div class="agent-grid">
+                <div class="ac"><div class="ai"><div class="ico" style="background:#eeedfe">🧠</div><div class="inf"><div class="an">总调度智能体</div><div class="as r">● 协调中</div></div></div><div class="at">正在整合5个子智能体结果</div><div class="bar"><div class="br" style="width:72%;background:#534ab7"></div></div></div>
+                <div class="ac"><div class="ai"><div class="ico" style="background:#e1f5ee">🍜</div><div class="inf"><div class="an">美食发现智能体</div><div class="as g">● 运行中</div></div></div><div class="at">抓取128家新餐厅数据</div><div class="bar"><div class="br" style="width:88%;background:#0a8a5e"></div></div></div>
+                <div class="ac"><div class="ai"><div class="ico" style="background:#e6f1fb">🗺️</div><div class="inf"><div class="an">景点规划智能体</div><div class="as gy">○ 待命</div></div></div><div class="at">已完成路线规划</div><div class="bar"><div class="br" style="width:100%;background:#ccc"></div></div></div>
+                <div class="ac"><div class="ai"><div class="ico" style="background:#faeed9">🚇</div><div class="inf"><div class="an">交通导航智能体</div><div class="as r">● 实时更新</div></div></div><div class="at">监控地铁延误推送备选</div><div class="bar"><div class="br" style="width:55%;background:#ba7517"></div></div></div>
+                <div class="ac"><div class="ai"><div class="ico" style="background:#fbeaf0">🎭</div><div class="inf"><div class="an">活动推荐智能体</div><div class="as gy">○ 待命</div></div></div><div class="at">23项演出已完成评分</div><div class="bar"><div class="br" style="width:100%;background:#ccc"></div></div></div>
+                <div class="ac"><div class="ai"><div class="ico" style="background:#faece7">🏨</div><div class="inf"><div class="an">住宿助手智能体</div><div class="as gy">○ 待命</div></div></div><div class="at">40家酒店性价比已更新</div><div class="bar"><div class="br" style="width:100%;background:#ccc"></div></div></div>
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:500;color:#555;margin-bottom:8px">智能推荐流（实时聚合）</div>
+            <div class="feed">
+              <div class="fi"><div class="fi-ico" style="background:#e1f5ee">🍜</div><div class="fi-con"><div class="fi-t">渔人码头·潮汕鲜牛肉火锅</div><div class="fi-m">南山区 · 人均¥128 · 步行8分钟</div><div class="tags"><span class="tag tt">口味匹配</span><span class="tag ta">今日推荐</span><span class="tag tp">已聚合3源</span></div></div><div class="score">9.4</div></div>
+              <div class="fi"><div class="fi-ico" style="background:#e6f1fb">🗺️</div><div class="fi-con"><div class="fi-t">深圳湾公园日落 + 夜景</div><div class="fi-m">景点 · 免费 · 建议3小时</div><div class="tags"><span class="tag tb">路线已优化</span><span class="tag tp">交通协同</span></div></div><div class="score">9.1</div></div>
+              <div class="fi"><div class="fi-ico" style="background:#fbeaf0">🎭</div><div class="fi-con"><div class="fi-t">深圳音乐厅·室内乐音乐会</div><div class="fi-m">福田区 · ¥80起 · 地铁可达</div><div class="tags"><span class="tag tc">限时优惠</span><span class="tag tb">交通已规划</span></div></div><div class="score">8.8</div></div>
+            </div>
+          </div>
+          <!-- chat -->
+          <div>
+            <div style="background:#fff;border-radius:10px;border:0.5px solid rgba(0,0,0,0.07);height:100%;display:flex;flex-direction:column">
+              <div style="padding:10px 12px;border-bottom:0.5px solid rgba(0,0,0,0.05)"><div style="font-size:12px;font-weight:500;color:#1a1a1a">智能助手</div><div style="font-size:10px;color:#888;margin-top:2px">多智能体协同回答</div></div>
+              <div style="flex:1;padding:10px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;gap:6px"><div style="width:20px;height:20px;border-radius:50%;background:#eeedfe;display:flex;align-items:center;justify-content:center;font-size:9px;color:#534ab7;font-weight:500;flex-shrink:0">AI</div><div style="background:#f5f4f0;border-radius:8px;border-bottom-left-radius:3px;padding:6px 8px;font-size:10px;color:#1a1a1a;line-height:1.6">您好！我是城市智脑，已整合美食、景点、交通等多个智能体 🗺️</div></div>
+                <div style="display:flex;gap:6px;flex-direction:row-reverse"><div style="width:20px;height:20px;border-radius:50%;background:#534ab7;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:500;flex-shrink:0">我</div><div style="background:#534ab7;border-radius:8px;border-bottom-right-radius:3px;padding:6px 8px;font-size:10px;color:#fff;line-height:1.6">今晚想吃好吃的，顺便看夜景，怎么安排？</div></div>
+                <div style="display:flex;gap:6px"><div style="width:20px;height:20px;border-radius:50%;background:#eeedfe;display:flex;align-items:center;justify-content:center;font-size:9px;color:#534ab7;font-weight:500;flex-shrink:0">AI</div><div style="background:#f5f4f0;border-radius:8px;border-bottom-left-radius:3px;padding:6px 8px;font-size:10px;color:#1a1a1a;line-height:1.6"><b>推荐方案：</b><br>① 18:30 深圳湾公园日落<br>② 20:00 渔人码头火锅<br>③ 21:30 超级总部夜景<br>地铁11号线全程可达 ✓</div></div>
+              </div>
+              <div style="padding:8px 10px;border-top:0.5px solid rgba(0,0,0,0.05);display:flex;gap:6px;align-items:center">
+                <div style="flex:1;background:#f9f9f9;border:0.5px solid rgba(0,0,0,0.08);border-radius:7px;padding:6px 10px;font-size:11px;color:#aaa">问我任何深圳本地问题…</div>
+                <div style="width:26px;height:26px;border-radius:7px;background:#534ab7;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:10px 16px;background:#0d1b2a;text-align:center;font-size:11px;color:#888">图1 · 主界面：多智能体协作看板 + 智能推荐流 + 对话助手</div>
+    </div>
+  </div>
+
+  <!-- 架构流程 -->
+  <div class="section">
+    <h3>🧠 核心架构 · 六大智能体协同</h3>
+    <p>用户一句话 → 总调度理解意图 → 并行分发6个子智能体 → 结果融合 → 结构化答案</p>
+  </div>
+  <div class="flow">
+    <div class="node"><div class="n-ico">👤</div><div class="n-t">用户问询</div><div class="n-s">"今晚吃火锅看夜景"</div></div>
+    <div class="arr">→</div>
+    <div class="node" style="background:#533483;border-color:rgba(255,255,255,0.2)"><div class="n-ico">🧠</div><div class="n-t">总调度中枢</div><div class="n-s">意图理解 + 任务分发</div></div>
+    <div class="arr">→</div>
+    <div class="node"><div class="n-ico">🍜</div><div class="n-t">美食智能体</div><div class="n-s">128家火锅排序</div></div>
+    <div class="node"><div class="n-ico">🗺️</div><div class="n-t">景点智能体</div><div class="n-s">最佳观景路线</div></div>
+    <div class="node"><div class="n-ico">🚇</div><div class="n-t">交通智能体</div><div class="n-s">实时路况+延误预警</div></div>
+    <div class="arr">→</div>
+    <div class="node" style="background:#533483;border-color:rgba(255,255,255,0.2)"><div class="n-ico">🔄</div><div class="n-t">结果融合</div><div class="n-s">去重 + 排序 + 结构化</div></div>
+    <div class="arr">→</div>
+    <div class="node" style="background:#0a8a5e;border-color:rgba(255,255,255,0.15)"><div class="n-ico">✅</div><div class="n-t">结构化答案</div><div class="n-s">时间线 + 路线 + 评分</div></div>
+  </div>
+
+  <!-- 截图2：对话示例 -->
+  <div class="row">
+    <div class="card">
+      <div class="card-hd">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+        <span>场景示例 · 一句话触发多智能体协作</span>
+      </div>
+      <div style="padding:24px;background:#f5f4f0">
+        <div style="max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;gap:10px;align-items:flex-end">
+            <div style="width:36px;height:36px;border-radius:50%;background:#eeedfe;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">👤</div>
+            <div style="background:#fff;border-radius:12px;border-bottom-left-radius:4px;padding:10px 14px;border:0.5px solid rgba(0,0,0,0.06);max-width:480px">
+              <div style="font-size:12px;color:#1a1a1a;line-height:1.7">周末两天带家人来深圳玩，想去景点、吃美食、看演出，怎么安排最合理？</div>
+              <div style="font-size:10px;color:#aaa;margin-top:4px">2026-05-01 10:24</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-end;flex-direction:row-reverse">
+            <div style="width:36px;height:36px;border-radius:50%;background:#534ab7;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0">🧠</div>
+            <div style="background:#534ab7;border-radius:12px;border-bottom-right-radius:4px;padding:12px 14px;max-width:480px">
+              <div style="font-size:11px;color:#fff;line-height:1.8">
+                <div style="font-size:10px;color:#ddd;margin-bottom:6px">● 已调度 美食+景点+交通+活动 四个智能体协同分析中…</div>
+                <div style="margin-bottom:6px"><b>📅 周六方案</b></div>
+                <div>① 09:00 深圳湾公园（晨跑+观鸟）</div>
+                <div>② 12:00 海岸城·潮汕鲜牛肉火锅（已排号）</div>
+                <div>③ 15:00 世界之窗（含夜场，16:00后入园）</div>
+                <div>④ 19:00 超级总部夜景散步</div>
+                <div style="margin-top:6px"><b>📅 周日方案</b></div>
+                <div>① 10:00 莲花山公园（山顶俯瞰市民中心）</div>
+                <div>② 14:00 深圳音乐厅·室内乐（已购票¥80）</div>
+                <div>③ 16:30 东门老街（购物+小吃）</div>
+                <div style="margin-top:8px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.2)">
+                  <div style="font-size:10px;color:#ccc">🚇 交通：全程地铁，智能体已规划换乘方案，无拥堵路段</div>
+                  <div style="font-size:10px;color:#ccc">📊 综合评分：9.3 / 10（基于家庭偏好优化）</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:10px 16px;background:#0d1b2a;text-align:center;font-size:11px;color:#888">图2 · 场景示例：用户一句需求 → 多智能体协同生成完整两天行程</div>
+    </div>
+  </div>
+
+  <!-- 数据源整合 -->
+  <div class="section">
+    <h3>📡 数据源整合 · 去碎片化</h3>
+    <p>聚合大众点评 / 高德地图 / 携程 / 小红书 / 本地政务，智能去重与评分</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:40px">
+    <div style="background:#16213e;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:28px;margin-bottom:6px">🍜</div>
+      <div style="font-size:13px;font-weight:500;color:#fff">大众点评</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">128家餐厅评分</div>
+      <div style="font-size:11px;color:#0a8a5e;margin-top:4px">✓ 实时接入</div>
+    </div>
+    <div style="background:#16213e;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:28px;margin-bottom:6px">🗺️</div>
+      <div style="font-size:13px;font-weight:500;color:#fff">高德地图</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">实时路况+路线</div>
+      <div style="font-size:11px;color:#0a8a5e;margin-top:4px">✓ 实时接入</div>
+    </div>
+    <div style="background:#16213e;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:28px;margin-bottom:6px">✈️</div>
+      <div style="font-size:13px;font-weight:500;color:#fff">携程旅行</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">景点+酒店+票务</div>
+      <div style="font-size:11px;color:#0a8a5e;margin-top:4px">✓ 实时接入</div>
+    </div>
+    <div style="background:#16213e;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:28px;margin-bottom:6px">📕</div>
+      <div style="font-size:13px;font-weight:500;color:#fff">小红书</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">网红打卡+攻略</div>
+      <div style="font-size:11px;color:#0a8a5e;margin-top:4px">✓ 实时接入</div>
+    </div>
+    <div style="background:#16213e;border-radius:12px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.06)">
+      <div style="font-size:28px;margin-bottom:6px">🏛️</div>
+      <div style="font-size:13px;font-weight:500;color:#fff">本地政务</div>
+      <div style="font-size:11px;color:#888;margin-top:3px">官方活动+公告</div>
+      <div style="font-size:11px;color:#0a8a5e;margin-top:4px">✓ 实时接入</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🏙️ 城市智脑 · 本地生活与文旅智能中枢</p>
+    <p style="margin-top:6px"><a href="https://github.com/ck1682026/lys888">github.com/ck1682026/lys888</a> · <a href="mailto:gscl999@163.com">gscl999@163.com</a></p>
+  </div>
+</div>
+</body>
+</html>
