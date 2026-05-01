@@ -201,6 +201,7 @@ lys888/
 
 ## 📬 联系方式
 
+- 📧 邮箱：[**gscl999@163.com**](mailto:gscl999@163.com)
 - GitHub Issues: [提交问题](https://github.com/ck1682026/lys888/issues)
 - 项目主页: https://github.com/ck1682026/lys888
 
